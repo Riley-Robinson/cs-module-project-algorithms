@@ -2,10 +2,26 @@
 Input: a List of integers as well as an integer `k` representing the size of the sliding window
 Returns: a List of integers
 '''
-def sliding_window_max(nums, k):
-    # Your code here
 
-    pass
+
+def sliding_window_max(nums, k):
+    start, end = 0, k - 1
+    max_vals = []
+    while end < len(nums):
+        max_num = compare_window(nums, start, end)
+        max_vals.append(max_num)
+        start += 1
+        end += 1
+    return max_vals
+
+def compare_window(nums, start, end):
+    pointer = start + 1
+    max_num = nums[start]
+    while pointer <= end:
+        if max_num < nums[pointer]:
+            max_num = nums[pointer]
+        pointer += 1
+    return max_num
 
 
 if __name__ == '__main__':
